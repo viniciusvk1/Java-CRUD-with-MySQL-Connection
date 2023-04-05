@@ -2,9 +2,52 @@ package br.com.project.view;
 
 import br.com.project.dao.ClientsDAO;
 import br.com.project.model.Clients;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 public class FrmClients extends javax.swing.JFrame {
 
+    public void LoadDatatable(){
+        
+        
+        ClientsDAO dao = new ClientsDAO();
+        List<Clients> list = dao.listClients();
+        
+        DefaultTableModel data = (DefaultTableModel) tabelClients.getModel();
+        data.setNumRows(0);
+        
+        for (Clients c : list) {
+            data.addRow(new Object[]{
+                c.getId(),
+                c.getName(),
+                c.getRg(),
+                c.getCpf(),
+                c.getEmail(),
+                c.getPhone(),
+                c.getMobile(),
+                c.getZip_code(),
+                c.getAddress(),
+                c.getNumber(),
+                c.getComplement(),
+                c.getNeighborhood(),
+                c.getCity(),
+                c.getState()
+            });
+            
+        }
+
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
     public FrmClients() {
         initComponents();
     }
@@ -50,13 +93,18 @@ public class FrmClients extends javax.swing.JFrame {
         jTextField25 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelClients = new javax.swing.JTable();
         jButton6 = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 204));
 
@@ -379,15 +427,18 @@ public class FrmClients extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelClients.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Name", "RG", "E-Mail", "Phone", "Mobile Phone Number", "Zip Code", "Address", "House Number", "Complement", "Neighborhood", "City", "UF"
+                "ID", "Name", "RG", "CPF", "E-Mail", "Phone", "Mobile Phone Number", "Zip Code", "Address", "House Number", "Complement", "Neighborhood", "City", "UF"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelClients);
+        if (tabelClients.getColumnModel().getColumnCount() > 0) {
+            tabelClients.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -555,30 +606,32 @@ public class FrmClients extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
 
+        Clients obj = new Clients();
 
-            Clients obj = new Clients();
+        obj.setName(txtname.getText());
+        obj.setRg(txtrg.getText());
+        obj.setCpf(txtcpf.getText());
+        obj.setEmail(txtemail.getText());
+        obj.setPhone(txtphone.getText());
+        obj.setMobile(txtmobile.getText());
+        obj.setZip_code(txtzip_code.getText());
+        obj.setAddress(txtaddress.getText());
+        obj.setNumber(Integer.parseInt(txtnumber.getText()));
+        obj.setComplement(txtcomplement.getText());
+        obj.setNeighborhood(txtneighborhood.getText());
+        obj.setCity(txtcity.getText());
+        obj.setState(cbuf.getSelectedItem().toString());
 
-            obj.setName(txtname.getText());
-            obj.setRg(txtrg.getText());
-            obj.setCpf(txtcpf.getText());
-            obj.setEmail(txtemail.getText());
-            obj.setEmail(txtemail.getText());
-            obj.setPhone(txtphone.getText());
-            obj.setMobile(txtmobile.getText());
-            obj.setZip_code(txtzip_code.getText());
-            obj.setAddress(txtaddress.getText());
-            obj.setNumber(Integer.parseInt(txtnumber.getText()));
-            obj.setComplement(txtcomplement.getText());
-            obj.setNeighborhood(txtneighborhood.getText());
-            obj.setCity(txtcity.getText());
-            obj.setState(cbuf.getSelectedItem().toString());
-            
-            ClientsDAO dao = new ClientsDAO();
-            
-            dao.registerCustomer(obj);
+        ClientsDAO dao = new ClientsDAO();
+
+        dao.registerCustomer(obj);
 
 
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        LoadDatatable();
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -643,9 +696,9 @@ public class FrmClients extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField25;
+    private javax.swing.JTable tabelClients;
     private javax.swing.JTextField txtaddress;
     private javax.swing.JTextField txtcity;
     private javax.swing.JTextField txtcomplement;
