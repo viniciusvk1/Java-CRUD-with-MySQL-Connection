@@ -53,12 +53,58 @@ public class ClientsDAO {
 
     }
 
-    public void modifyCustomer() {
+    public void modifyCustomer(Clients obj) {
+        try {
 
+            String sql = "UPDATE tb_clients SET name=?, rg=?, cpf=?, email=?, phone=?, mobile=?, zip_code=?,"
+                    + "address=?, number=?, complement=?, neighborhood=?, city=?, state=? WHERE id =?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, obj.getName());
+            stmt.setString(2, obj.getRg());
+            stmt.setString(3, obj.getCpf());
+            stmt.setString(4, obj.getEmail());
+            stmt.setString(5, obj.getPhone());
+            stmt.setString(6, obj.getMobile());
+            stmt.setString(7, obj.getZip_code());
+            stmt.setString(8, obj.getAddress());
+            stmt.setInt(9, obj.getNumber());
+            stmt.setString(10, obj.getComplement());
+            stmt.setString(11, obj.getNeighborhood());
+            stmt.setString(12, obj.getCity());
+            stmt.setString(13, obj.getState());
+            stmt.setInt(14, obj.getId());
+
+            stmt.execute();
+            stmt.close();
+
+            JOptionPane.showMessageDialog(null, "Successfully changed!");
+
+        } catch (SQLException error) {
+
+            JOptionPane.showMessageDialog(null, "Error:!" + error);
+
+        }
     }
 
-    public void deleteCustomer() {
+    public void deleteCustomer(Clients obj) {
+        try {
 
+            String sql = "DELETE FROM tb_clients where id = ?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, obj.getId());
+
+            stmt.execute();
+            stmt.close();
+
+            JOptionPane.showMessageDialog(null, "Successfully excluded!");
+
+        } catch (SQLException error) {
+
+            JOptionPane.showMessageDialog(null, "Error:!" + error);
+
+        }
     }
 
     public List<Clients> listClients() {
