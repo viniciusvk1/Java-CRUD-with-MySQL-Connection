@@ -35,18 +35,8 @@ public class FrmClients extends javax.swing.JFrame {
             });
             
         }
-
-        
-        
-        
         
     }
-    
-    
-    
-    
-    
-    
     
     public FrmClients() {
         initComponents();
@@ -90,8 +80,8 @@ public class FrmClients extends javax.swing.JFrame {
         txtcpf = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel44 = new javax.swing.JLabel();
-        jTextField25 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtsearch = new javax.swing.JTextField();
+        btnsearch = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelClients = new javax.swing.JTable();
         jButton6 = new javax.swing.JButton();
@@ -414,16 +404,21 @@ public class FrmClients extends javax.swing.JFrame {
 
         jLabel44.setText("Name:");
 
-        jTextField25.addActionListener(new java.awt.event.ActionListener() {
+        txtsearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField25ActionPerformed(evt);
+                txtsearchActionPerformed(evt);
+            }
+        });
+        txtsearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtsearchKeyPressed(evt);
             }
         });
 
-        jButton1.setText("Search");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnsearch.setText("Search");
+        btnsearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnsearchActionPerformed(evt);
             }
         });
 
@@ -456,9 +451,9 @@ public class FrmClients extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel44)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(btnsearch)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -468,8 +463,8 @@ public class FrmClients extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel44)
-                    .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnsearch))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
@@ -607,14 +602,41 @@ public class FrmClients extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcpfActionPerformed
 
-    private void jTextField25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField25ActionPerformed
+    private void txtsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField25ActionPerformed
+    }//GEN-LAST:event_txtsearchActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearchActionPerformed
+        
+        String name = "%" + txtsearch.getText() + "%";
+        
+        ClientsDAO dao = new ClientsDAO();
+        List<Clients> list = dao.searchClients(name);
+        
+        DefaultTableModel data = (DefaultTableModel) tabelClients.getModel();
+        data.setNumRows(0);
+        
+        for (Clients c : list) {
+            data.addRow(new Object[]{
+                c.getId(),
+                c.getName(),
+                c.getRg(),
+                c.getCpf(),
+                c.getEmail(),
+                c.getPhone(),
+                c.getMobile(),
+                c.getZip_code(),
+                c.getAddress(),
+                c.getNumber(),
+                c.getComplement(),
+                c.getNeighborhood(),
+                c.getCity(),
+                c.getState()
+            });
+    }//GEN-LAST:event_btnsearchActionPerformed
 
+}
+    
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -702,6 +724,37 @@ public class FrmClients extends javax.swing.JFrame {
         dao.deleteCustomer(obj);
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    private void txtsearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsearchKeyPressed
+        
+        String name = "%" + txtsearch.getText() + "%";
+        
+        ClientsDAO dao = new ClientsDAO();
+        List<Clients> list = dao.searchClients(name);
+        
+        DefaultTableModel data = (DefaultTableModel) tabelClients.getModel();
+        data.setNumRows(0);
+        
+        for (Clients c : list) {
+            data.addRow(new Object[]{
+                c.getId(),
+                c.getName(),
+                c.getRg(),
+                c.getCpf(),
+                c.getEmail(),
+                c.getPhone(),
+                c.getMobile(),
+                c.getZip_code(),
+                c.getAddress(),
+                c.getNumber(),
+                c.getComplement(),
+                c.getNeighborhood(),
+                c.getCity(),
+                c.getState()
+            });
+    }                                 
+
+    }//GEN-LAST:event_txtsearchKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -739,8 +792,8 @@ public class FrmClients extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnsearch;
     private javax.swing.JComboBox<String> cbuf;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
@@ -765,7 +818,6 @@ public class FrmClients extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField25;
     private javax.swing.JTable tabelClients;
     private javax.swing.JTextField txtaddress;
     private javax.swing.JTextField txtcity;
@@ -779,6 +831,7 @@ public class FrmClients extends javax.swing.JFrame {
     private javax.swing.JTextField txtnumber;
     private javax.swing.JFormattedTextField txtphone;
     private javax.swing.JFormattedTextField txtrg;
+    private javax.swing.JTextField txtsearch;
     private javax.swing.JFormattedTextField txtzip_code;
     // End of variables declaration//GEN-END:variables
 }
