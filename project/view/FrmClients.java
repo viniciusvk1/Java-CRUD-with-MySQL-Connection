@@ -127,6 +127,7 @@ public class FrmClients extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("ID:");
 
+        txtid.setEditable(false);
         txtid.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

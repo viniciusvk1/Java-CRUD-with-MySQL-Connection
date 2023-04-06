@@ -147,6 +147,43 @@ public class ClientsDAO {
         }
     }
     
+    public Clients searchByName(String name){
+        try {
+            
+            String sql = "SELECT * FROM tb_clients WHERE name = ?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery();
+
+            Clients obj = new Clients();
+            
+            if(rs.next()){
+
+                obj.setId(rs.getInt("id"));
+                obj.setName(rs.getString("name"));
+                obj.setRg(rs.getString("rg"));
+                obj.setCpf(rs.getString("cpf"));
+                obj.setEmail(rs.getString("email"));
+                obj.setPhone(rs.getString("phone"));
+                obj.setMobile(rs.getString("mobile"));
+                obj.setZip_code(rs.getString("zip_code"));
+                obj.setAddress(rs.getString("address"));
+                obj.setNumber(rs.getInt("number"));
+                obj.setComplement(rs.getString("complement"));
+                obj.setNeighborhood(rs.getString("neighborhood"));
+                obj.setCity(rs.getString("city"));
+                obj.setState(rs.getString("state"));
+            }
+            return obj;
+            
+        } catch (SQLException e) {
+               JOptionPane.showMessageDialog(null,"Customer not found");
+               return null;
+        }
+    }
+    
+    
     public List<Clients> searchClients(String name) {
         try {
 
