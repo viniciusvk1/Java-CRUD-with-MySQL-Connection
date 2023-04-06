@@ -146,5 +146,46 @@ public class ClientsDAO {
             return null;
         }
     }
+    
+    public List<Clients> searchClients(String name) {
+        try {
+
+            List<Clients> list = new ArrayList<>();
+
+            String sql = "SELECT * FROM tb_clients WHERE name LIKE ?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Clients obj = new Clients();
+
+                obj.setId(rs.getInt("id"));
+                obj.setName(rs.getString("name"));
+                obj.setRg(rs.getString("rg"));
+                obj.setCpf(rs.getString("cpf"));
+                obj.setEmail(rs.getString("email"));
+                obj.setPhone(rs.getString("phone"));
+                obj.setMobile(rs.getString("mobile"));
+                obj.setZip_code(rs.getString("zip_code"));
+                obj.setAddress(rs.getString("address"));
+                obj.setNumber(rs.getInt("number"));
+                obj.setComplement(rs.getString("complement"));
+                obj.setNeighborhood(rs.getString("neighborhood"));
+                obj.setCity(rs.getString("city"));
+                obj.setState(rs.getString("state"));
+
+                list.add(obj);
+
+            }
+
+            return list;
+
+        } catch (SQLException error) {
+            JOptionPane.showMessageDialog(null, "Error" + error);
+            return null;
+        }
+    }
 
 }
