@@ -4,19 +4,19 @@ import br.com.project.dao.ClientsDAO;
 import br.com.project.model.Clients;
 import br.com.project.model.Utilities;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class FrmClients extends javax.swing.JFrame {
 
-    public void LoadDatatable(){
-        
-        
+    public void LoadDatatable() {
+
         ClientsDAO dao = new ClientsDAO();
         List<Clients> list = dao.listClients();
-        
+
         DefaultTableModel data = (DefaultTableModel) tabelClients.getModel();
         data.setNumRows(0);
-        
+
         for (Clients c : list) {
             data.addRow(new Object[]{
                 c.getId(),
@@ -34,11 +34,11 @@ public class FrmClients extends javax.swing.JFrame {
                 c.getCity(),
                 c.getState()
             });
-            
+
         }
-        
+
     }
-    
+
     public FrmClients() {
         initComponents();
     }
@@ -197,6 +197,11 @@ public class FrmClients extends javax.swing.JFrame {
         txtzip_code.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtzip_codeActionPerformed(evt);
+            }
+        });
+        txtzip_code.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtzip_codeKeyPressed(evt);
             }
         });
 
@@ -569,7 +574,7 @@ public class FrmClients extends javax.swing.JFrame {
     }//GEN-LAST:event_txtphoneActionPerformed
 
     private void txtzip_codeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtzip_codeActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_txtzip_codeActionPerformed
 
     private void txtaddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtaddressActionPerformed
@@ -609,15 +614,15 @@ public class FrmClients extends javax.swing.JFrame {
     }//GEN-LAST:event_txtsearchActionPerformed
 
     private void btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearchActionPerformed
-        
+
         String name = "%" + txtsearch.getText() + "%";
-        
+
         ClientsDAO dao = new ClientsDAO();
         List<Clients> list = dao.searchClients(name);
-        
+
         DefaultTableModel data = (DefaultTableModel) tabelClients.getModel();
         data.setNumRows(0);
-        
+
         for (Clients c : list) {
             data.addRow(new Object[]{
                 c.getId(),
@@ -637,8 +642,8 @@ public class FrmClients extends javax.swing.JFrame {
             });
     }//GEN-LAST:event_btnsearchActionPerformed
 
-}
-    
+    }
+
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         new Utilities().clearScreen(paneldata);
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -664,7 +669,7 @@ public class FrmClients extends javax.swing.JFrame {
         ClientsDAO dao = new ClientsDAO();
 
         dao.registerCustomer(obj);
-        
+
         new Utilities().clearScreen(paneldata);
 
 
@@ -675,23 +680,23 @@ public class FrmClients extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void tabelClientsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelClientsMouseClicked
-       jTabbedPane1.setSelectedIndex(0);
-       
-       txtid.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),0).toString());
-       txtname.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),1).toString());
-       txtrg.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),2).toString());
-       txtcpf.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),3).toString());
-       txtemail.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),4).toString());
-       txtphone.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),5).toString());
-       txtmobile.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),6).toString());
-       txtzip_code.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),7).toString());
-       txtaddress.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),8).toString());
-       txtnumber.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),9).toString());
-       txtcomplement.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),10).toString());
-       txtneighborhood.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),11).toString());
-       txtcity.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),12).toString());
-       cbuf.setSelectedItem(tabelClients.getValueAt(tabelClients.getSelectedRow(),13).toString()); 
-       
+        jTabbedPane1.setSelectedIndex(0);
+
+        txtid.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(), 0).toString());
+        txtname.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(), 1).toString());
+        txtrg.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(), 2).toString());
+        txtcpf.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(), 3).toString());
+        txtemail.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(), 4).toString());
+        txtphone.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(), 5).toString());
+        txtmobile.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(), 6).toString());
+        txtzip_code.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(), 7).toString());
+        txtaddress.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(), 8).toString());
+        txtnumber.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(), 9).toString());
+        txtcomplement.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(), 10).toString());
+        txtneighborhood.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(), 11).toString());
+        txtcity.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(), 12).toString());
+        cbuf.setSelectedItem(tabelClients.getValueAt(tabelClients.getSelectedRow(), 13).toString());
+
     }//GEN-LAST:event_tabelClientsMouseClicked
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -710,38 +715,38 @@ public class FrmClients extends javax.swing.JFrame {
         obj.setNeighborhood(txtneighborhood.getText());
         obj.setCity(txtcity.getText());
         obj.setState(cbuf.getSelectedItem().toString());
-        
+
         obj.setId(Integer.parseInt(txtid.getText()));
 
         ClientsDAO dao = new ClientsDAO();
 
         dao.modifyCustomer(obj);
-        
+
         new Utilities().clearScreen(paneldata);
 
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         Clients obj = new Clients();
-        
+
         obj.setId(Integer.parseInt(txtid.getText()));
 
         ClientsDAO dao = new ClientsDAO();
 
         dao.deleteCustomer(obj);
-            new Utilities().clearScreen(paneldata);
+        new Utilities().clearScreen(paneldata);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void txtsearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsearchKeyPressed
-        
+
         String name = "%" + txtsearch.getText() + "%";
-        
+
         ClientsDAO dao = new ClientsDAO();
         List<Clients> list = dao.searchClients(name);
-        
+
         DefaultTableModel data = (DefaultTableModel) tabelClients.getModel();
         data.setNumRows(0);
-        
+
         for (Clients c : list) {
             data.addRow(new Object[]{
                 c.getId(),
@@ -759,9 +764,13 @@ public class FrmClients extends javax.swing.JFrame {
                 c.getCity(),
                 c.getState()
             });
-    }                                 
+        }
 
     }//GEN-LAST:event_txtsearchKeyPressed
+
+    private void txtzip_codeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtzip_codeKeyPressed
+        
+    }//GEN-LAST:event_txtzip_codeKeyPressed
 
     /**
      * @param args the command line arguments

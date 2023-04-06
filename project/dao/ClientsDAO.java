@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 public class ClientsDAO {
 
     private Connection con;
+    private Object txtaddress;
 
     public ClientsDAO() {
         this.con = new ConnectionFactory().getConnection();
@@ -146,10 +147,10 @@ public class ClientsDAO {
             return null;
         }
     }
-    
-    public Clients searchByName(String name){
+
+    public Clients searchByName(String name) {
         try {
-            
+
             String sql = "SELECT * FROM tb_clients WHERE name = ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -157,8 +158,8 @@ public class ClientsDAO {
             ResultSet rs = stmt.executeQuery();
 
             Clients obj = new Clients();
-            
-            if(rs.next()){
+
+            if (rs.next()) {
 
                 obj.setId(rs.getInt("id"));
                 obj.setName(rs.getString("name"));
@@ -176,14 +177,13 @@ public class ClientsDAO {
                 obj.setState(rs.getString("state"));
             }
             return obj;
-            
+
         } catch (SQLException e) {
-               JOptionPane.showMessageDialog(null,"Customer not found");
-               return null;
+            JOptionPane.showMessageDialog(null, "Customer not found");
+            return null;
         }
     }
-    
-    
+
     public List<Clients> searchClients(String name) {
         try {
 
@@ -225,4 +225,6 @@ public class ClientsDAO {
         }
     }
 
-}
+   
+  
+        }
