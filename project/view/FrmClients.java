@@ -61,7 +61,7 @@ public class FrmClients extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtid = new javax.swing.JTextField();
         txtname = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -136,10 +136,10 @@ public class FrmClients extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("ID:");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtid.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtidActionPerformed(evt);
             }
         });
 
@@ -318,7 +318,7 @@ public class FrmClients extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -368,7 +368,7 @@ public class FrmClients extends javax.swing.JFrame {
                 .addContainerGap(66, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -435,6 +435,11 @@ public class FrmClients extends javax.swing.JFrame {
                 "ID", "Name", "RG", "CPF", "E-Mail", "Phone", "Mobile Phone Number", "Zip Code", "Address", "House Number", "Complement", "Neighborhood", "City", "UF"
             }
         ));
+        tabelClients.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelClientsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelClients);
         if (tabelClients.getColumnModel().getColumnCount() > 0) {
             tabelClients.getColumnModel().getColumn(4).setResizable(false);
@@ -487,8 +492,18 @@ public class FrmClients extends javax.swing.JFrame {
         });
 
         jButton8.setText("EDIT");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("DELETE");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -536,9 +551,9 @@ public class FrmClients extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtidActionPerformed
 
     private void txtnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnameActionPerformed
         // TODO add your handling code here:
@@ -633,6 +648,60 @@ public class FrmClients extends javax.swing.JFrame {
         LoadDatatable();
     }//GEN-LAST:event_formWindowActivated
 
+    private void tabelClientsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelClientsMouseClicked
+       jTabbedPane1.setSelectedIndex(0);
+       
+       txtid.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),0).toString());
+       txtname.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),1).toString());
+       txtrg.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),2).toString());
+       txtcpf.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),3).toString());
+       txtemail.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),4).toString());
+       txtphone.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),5).toString());
+       txtmobile.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),6).toString());
+       txtzip_code.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),7).toString());
+       txtaddress.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),8).toString());
+       txtnumber.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),9).toString());
+       txtcomplement.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),10).toString());
+       txtneighborhood.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),11).toString());
+       txtcity.setText(tabelClients.getValueAt(tabelClients.getSelectedRow(),12).toString());
+       cbuf.setSelectedItem(tabelClients.getValueAt(tabelClients.getSelectedRow(),13).toString()); 
+       
+    }//GEN-LAST:event_tabelClientsMouseClicked
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        Clients obj = new Clients();
+
+        obj.setName(txtname.getText());
+        obj.setRg(txtrg.getText());
+        obj.setCpf(txtcpf.getText());
+        obj.setEmail(txtemail.getText());
+        obj.setPhone(txtphone.getText());
+        obj.setMobile(txtmobile.getText());
+        obj.setZip_code(txtzip_code.getText());
+        obj.setAddress(txtaddress.getText());
+        obj.setNumber(Integer.parseInt(txtnumber.getText()));
+        obj.setComplement(txtcomplement.getText());
+        obj.setNeighborhood(txtneighborhood.getText());
+        obj.setCity(txtcity.getText());
+        obj.setState(cbuf.getSelectedItem().toString());
+        
+        obj.setId(Integer.parseInt(txtid.getText()));
+
+        ClientsDAO dao = new ClientsDAO();
+
+        dao.modifyCustomer(obj);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        Clients obj = new Clients();
+        
+        obj.setId(Integer.parseInt(txtid.getText()));
+
+        ClientsDAO dao = new ClientsDAO();
+
+        dao.deleteCustomer(obj);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -696,7 +765,6 @@ public class FrmClients extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField25;
     private javax.swing.JTable tabelClients;
     private javax.swing.JTextField txtaddress;
@@ -704,6 +772,7 @@ public class FrmClients extends javax.swing.JFrame {
     private javax.swing.JTextField txtcomplement;
     private javax.swing.JFormattedTextField txtcpf;
     private javax.swing.JTextField txtemail;
+    private javax.swing.JTextField txtid;
     private javax.swing.JFormattedTextField txtmobile;
     private javax.swing.JTextField txtname;
     private javax.swing.JTextField txtneighborhood;
