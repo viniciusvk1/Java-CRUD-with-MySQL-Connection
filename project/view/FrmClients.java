@@ -39,6 +39,7 @@ public class FrmClients extends javax.swing.JFrame {
 
     }
 
+    
     public FrmClients() {
         initComponents();
     }
