@@ -304,11 +304,11 @@ public class FrmClients extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtzip_code, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(72, 72, 72)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -574,7 +574,7 @@ public class FrmClients extends javax.swing.JFrame {
     }//GEN-LAST:event_txtphoneActionPerformed
 
     private void txtzip_codeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtzip_codeActionPerformed
-       
+
     }//GEN-LAST:event_txtzip_codeActionPerformed
 
     private void txtaddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtaddressActionPerformed
@@ -769,7 +769,7 @@ public class FrmClients extends javax.swing.JFrame {
     }//GEN-LAST:event_txtsearchKeyPressed
 
     private void txtzip_codeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtzip_codeKeyPressed
-        
+
     }//GEN-LAST:event_txtzip_codeKeyPressed
 
     /**
@@ -805,6 +805,7 @@ public class FrmClients extends javax.swing.JFrame {
                 new FrmClients().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
